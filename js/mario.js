@@ -1,10 +1,12 @@
 const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
+const spanPlayer = document.querySelector('.player');
+const timer = document.querySelector('.timer');
 
 const jump = () => {
     mario.classList.add('jump');
 
-    setTimeout(() =>{
+    setTimeout(() => {
 
         mario.classList.remove('jump');
 
@@ -26,7 +28,7 @@ const loop = setInterval(() => {
 
         mario.style.animation = 'none';
         mario.style.bottom = `${marioPosition}px`;
-        
+
         mario.src = "/games-javascript/images/game-over.png";
         mario.style.width = '80px';
         mario.style.marginLeft = '30px';
@@ -37,3 +39,19 @@ const loop = setInterval(() => {
 }, 10);
 
 document.addEventListener('keydown', jump);
+
+const startTimer = () => {
+
+    setInterval(() => {
+
+        const currentTime = +timer.innerHTML;
+        timer.innerHTML = currentTime + 1;
+
+    }, 1000);
+}
+
+window.onload = () => {
+    startTimer();
+    spanPlayer.innerHTML = localStorage.getItem('player');
+
+}
