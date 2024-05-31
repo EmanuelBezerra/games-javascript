@@ -2,6 +2,7 @@ const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const spanPlayer = document.querySelector('.player');
 const timer = document.querySelector('.timer');
+const replayModal = document.querySelector('.replay');
 
 const jump = () => {
     mario.classList.add('jump');
@@ -32,11 +33,14 @@ const loop = setInterval(() => {
         mario.src = "/games-javascript/images/game-over.png";
         mario.style.width = '80px';
         mario.style.marginLeft = '30px';
+        replayModal.classList.add('show');
 
         clearInterval(loop);
     }
 
 }, 10);
+
+
 
 document.addEventListener('keydown', jump);
 

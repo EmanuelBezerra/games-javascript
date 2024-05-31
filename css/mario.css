@@ -25,6 +25,9 @@ header {
 button {
     width: 100px;
     height: 30px;
+    background-color: #2eacdf;
+    border-radius: 7px;
+    color: white;
 }
 
 * {
@@ -103,4 +106,32 @@ button {
     100% {
         bottom: 0;
     }
+}
+
+.replay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 2rem;
+    display: none;
+    border-radius: 10px;
+}
+
+.replay.show {
+    display: block;
+}
+
+.replay button {
+    display: block;
+    width: 250px;
+    height: 50px;
+    cursor: pointer;
+    color: white;
+    border-radius: 10px;
+    background: #2eacdf;
+    text-transform: capitalize;
+    font-weight: 800;
+    font-size: 20px;
 }

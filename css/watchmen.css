@@ -2,7 +2,7 @@ Main {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: rgb(255, 232, 103);
+    background-color: #ffe867;
     min-height: 100vh;
     align-items: center;
     justify-content: center;
@@ -24,6 +24,8 @@ header {
 button {
     width: 100px;
     height: 30px;
+    background-color: #ffe867;
+    border-radius: 7px;
 }
 
 .grid {
