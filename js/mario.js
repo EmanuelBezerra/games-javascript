@@ -3,6 +3,7 @@ const pipe = document.querySelector('.pipe');
 const spanPlayer = document.querySelector('.player');
 const timer = document.querySelector('.timer');
 const replayModal = document.querySelector('.replay');
+let timerInterval;
 
 const jump = () => {
     mario.classList.add('jump');
@@ -34,19 +35,17 @@ const loop = setInterval(() => {
         mario.style.width = '80px';
         mario.style.marginLeft = '30px';
         replayModal.classList.add('show');
-
+        
+        clearInterval(timerInterval);
         clearInterval(loop);
     }
-
 }, 10);
-
-
 
 document.addEventListener('keydown', jump);
 
 const startTimer = () => {
 
-    setInterval(() => {
+    timerInterval = setInterval(() => {
 
         const currentTime = +timer.innerHTML;
         timer.innerHTML = currentTime + 1;
