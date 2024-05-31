@@ -1,6 +1,7 @@
 const grid = document.querySelector('.grid');
 const spanPlayer = document.querySelector('.player');
 const timer = document.querySelector('.timer');
+let timerInterval;
 
 const characters = [
     'comedian',
@@ -28,6 +29,7 @@ let secondCard = '';
 const checkEndGame = () => {
     const disabledCards = document.querySelectorAll('.disabled-card');
     if (disabledCards.length === 20) {
+        clearInterval(timerInterval);
         alert('parabéns, você venceu!')
         
     }
@@ -115,7 +117,7 @@ const loadGame = () => {
 }
 
 const startTimer = () => {
-    setInterval(() => {
+    timerInterval = setInterval(() => {
         const currentTime = +timer.innerHTML;
         timer.innerHTML = currentTime + 1;
 
@@ -123,8 +125,6 @@ const startTimer = () => {
 }
 
 window.onload = () => {
-    
-
     spanPlayer.innerHTML = localStorage.getItem('player');
     startTimer();
     loadGame();
