@@ -36,8 +36,9 @@ const checkEndGame = () => {
 const checkCards = () => {
     const firstCharacter = firstCard.getAttribute('data-character');
     const secondCharacter = secondCard.getAttribute('data-character');
-
-    if (firstCharacter === secondCharacter) {
+    const dataCodefirst = firstCard.getAttribute('data-code');
+    const dataCodesecond = secondCard.getAttribute('data-code');
+    if (firstCharacter === secondCharacter && dataCodefirst != dataCodesecond) {
 
         firstCard.firstChild.classList.add('disabled-card');
         secondCard.firstChild.classList.add('disabled-card');
@@ -81,7 +82,7 @@ const createcard = (character) => {
     const front = createElement('div', 'face front');
     const back = createElement('div', 'face back');
 
-    front.style.backgroundImage = `url(/games-javascript/images/watchmen/${character}.jpg)`;
+    front.style.backgroundImage = `url(../images/watchmen/${character}.jpg)`;
 
     card.className = 'card';
     front.className = 'face front';
@@ -92,6 +93,8 @@ const createcard = (character) => {
     
     card.addEventListener('click', revealCard);
     card.setAttribute('data-character', character)
+
+    card.setAttribute('data-code', Math.floor(Math.random() * 20))
 
     return card;
 }

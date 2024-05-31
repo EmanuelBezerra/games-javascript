@@ -22,10 +22,10 @@ button {
 }
 
 .mario {
-    background-image: url(/games-javascript/images/wallpaper-mario.jpg);
+    background-image: url(../images/wallpaper-mario.jpg);
 
 }
 
 .watchmen {
-    background-image: url(/games-javascript/images/watchmen/wallpaper.jpg); 
+    background-image: url(../images/watchmen/wallpaper.jpg); 
 }

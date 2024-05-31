@@ -62,7 +62,7 @@ button {
 }
 
 .back {
-    background-image: url(/games-javascript/images/watchmen/capa.jpg);
+    background-image: url(../images/watchmen/capa.jpg);
     backface-visibility: hidden;
 }
 
