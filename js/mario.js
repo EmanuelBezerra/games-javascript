@@ -30,7 +30,7 @@ const loop = setInterval(() => {
         mario.style.animation = 'none';
         mario.style.bottom = `${marioPosition}px`;
 
-        mario.src = "/games-javascript/images/game-over.png";
+        mario.src = "../images/game-over.png";
         mario.style.width = '80px';
         mario.style.marginLeft = '30px';
         replayModal.classList.add('show');
