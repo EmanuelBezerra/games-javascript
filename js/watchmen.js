@@ -36,9 +36,9 @@ const checkEndGame = () => {
 const checkCards = () => {
     const firstCharacter = firstCard.getAttribute('data-character');
     const secondCharacter = secondCard.getAttribute('data-character');
-    const dataCodefirst = firstCard.getAttribute('data-code');
-    const dataCodesecond = secondCard.getAttribute('data-code');
-    if (firstCharacter === secondCharacter && dataCodefirst != dataCodesecond) {
+    const dataCodeFirst = firstCard.getAttribute('data-code');
+    const dataCodeSecond = secondCard.getAttribute('data-code');
+    if (firstCharacter === secondCharacter && dataCodeFirst != dataCodeSecond) {
 
         firstCard.firstChild.classList.add('disabled-card');
         secondCard.firstChild.classList.add('disabled-card');
@@ -60,6 +60,10 @@ const checkCards = () => {
 }
 
 const revealCard = ({ target }) => {
+    if (target.parentNode.className.includes('grid') || target.className.includes('disabled-card')) {
+        return;
+    }
+
     if (target.parentNode.className.includes('reveal.card')){
         return;
     }
@@ -67,9 +71,10 @@ const revealCard = ({ target }) => {
     if (firstCard === '') {
         target.parentNode.classList.add('reveal-card');
         firstCard = target.parentNode;
+        return;
 
-    } else if (secondCard === '') {
-
+    } 
+    if (secondCard === '') {
         target.parentNode.classList.add('reveal-card');
         secondCard = target.parentNode;
 
@@ -77,7 +82,7 @@ const revealCard = ({ target }) => {
     }
 }
 
-const createcard = (character) => {
+const createCart = (character) => {
     const card = createElement('div', 'card');
     const front = createElement('div', 'face front');
     const back = createElement('div', 'face back');
@@ -100,23 +105,17 @@ const createcard = (character) => {
 }
 
 const loadGame = () => {
-
     const duplicateCharacters = [ ...characters, ...characters ];
-
     const shuffledArray = duplicateCharacters.sort( () => Math.random() - 0.5 );
 
     shuffledArray.forEach((character) => {
-
-    const card = createcard(character);
-    grid.appendChild(card);
-
+        const card = createCart(character);
+        grid.appendChild(card);
     });
 }
 
 const startTimer = () => {
-
     setInterval(() => {
-
         const currentTime = +timer.innerHTML;
         timer.innerHTML = currentTime + 1;
 
@@ -132,33 +131,20 @@ window.onload = () => {
 }
 
 function uuid() {
-
-    // Retorna um número randômico entre 0 e 15.
     function randomDigit() {
 
-        // Se o browser tiver suporte às bibliotecas de criptografia, utilize-as;
         if (crypto && crypto.getRandomValues) {
-
-            // Cria um array contendo 1 byte:
             var rands = new Uint8Array(1);
 
-            // Popula o array com valores randômicos
             crypto.getRandomValues(rands);
 
-            // Retorna o módulo 16 do único valor presente (%16) em formato hexadecimal
             return (rands[0] % 16).toString(16);
         } else {
-        // Caso não, utilize random(), que pode ocasionar em colisões (mesmos valores
-        // gerados mais frequentemente):
             return ((Math.random() * 16) | 0).toString(16);
         }
     }
 
-    // A função pode utilizar a biblioteca de criptografia padrão, ou
-    // msCrypto se utilizando um browser da Microsoft anterior à integração.
     var crypto = window.crypto || window.msCrypto;
 
-    // para cada caracter [x] na string abaixo um valor hexadecimal é gerado via
-    // replace:
     return 'xxxxxxxx-xxxx-4xxx-8xxx-xxxxxxxxxxxx'.replace(/x/g, randomDigit);
 }
